@@ -5,17 +5,15 @@ import SignIn from "./pages/SignIn";
 
 export default function App() {
   return (
-
     <PageContainer>
       <BrowserRouter>
-       <Routes>
-       <Route path="/" element={<SignIn />} />
-        <Route path="/signUp" element={<SignUp />} />
+      <Routes>
+      <Route path="/" element={<SignIn />} />
+      <Route path="/signUp" element={<SignUp />} />
        
       </Routes> 
       </BrowserRouter>
     </PageContainer>
-
   );
 }
 
