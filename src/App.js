@@ -5,14 +5,14 @@ import signIn from "./pages/signIn";
 
 export default function App() {
   return (
-
     <PageContainer>
-      {/* <Routes>
-        <Route path="/signUp" element={signUp} />
-        <Route path="/signIn" element={signIn} />
-      </Routes> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/signUp" element={signUp} />
+          <Route path="/signIn" element={signIn} />
+        </Routes>
+      </BrowserRouter>
     </PageContainer>
-
   );
 }
 
