@@ -16,3 +16,4 @@ input {
     
 }
 `
+export default GlobalStyle;
