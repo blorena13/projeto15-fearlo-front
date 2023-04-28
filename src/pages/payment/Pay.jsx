@@ -25,38 +25,48 @@ export default function Pay() {
         </Buttons>
       </Resumo>
     </Container>
-
   )
 }
 
 const Container = styled.div`
-  display: block;
-  margin: 50px 0;
+/* background: #000; */
+  form {
+    width: 100%;
+  }
   label {
     width: 100%;
-    font-weight: bolder;
     text-align: start;
+    font-family: 'Roboto';
+    font-weight: bolder;
+    font-size: 20px;
   }
   input {
-    margin-bottom: 40px;
+    width: 100%;
+    margin-bottom: 10px;
   }
 `
 const Resumo = styled.div`
-    margin: 20px 0;  
+  p {
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-weight: bold;
+  }
 `
 const Value = styled.div`
-   display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
 `
 const Total = styled.div`
-   display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
 `
 const Buttons = styled.div`
   button {
+    font-family: 'Roboto';
     margin: 10px 0;
+    color: white;
   }
 
 `
