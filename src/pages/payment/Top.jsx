@@ -1,16 +1,26 @@
 import styled from "styled-components"
 import Logo from "../../assets/Logo Fearlo.png"
+import ShoppingCart from "./ShoppingCart"
+import Pay from "./Pay"
 
 
 export default function Top() {
   return (
-    <Header>
-      <img src={Logo} alt="logo Fearlo"/>
-      <Safe>
-      <ion-icon name="lock-closed-outline"></ion-icon>
-      <p>Ambiente Seguro</p>
-      </Safe> 
-    </Header>
+    <>
+      <Header>
+        <img src={Logo} alt="logo Fearlo"/>
+        <Safe>
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <p>Ambiente Seguro</p>
+        </Safe> 
+      </Header>
+      <Container>
+        <ShoppingCart/>
+        <Pay/>
+      </Container>
+          
+    </>
+
   )
 }
 
@@ -38,4 +48,9 @@ const Safe = styled.div`
   ion-icon {
     font-size: 25px;
   }
+`
+const Container = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 0 40px;
 `
