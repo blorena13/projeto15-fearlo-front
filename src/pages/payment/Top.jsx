@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import Logo from "../../assets/LogoFearlo.png"
+import Logo from "../../assets/Logo Fearlo.png"
 
 
 export default function Top() {
@@ -10,7 +10,7 @@ export default function Top() {
       <ion-icon name="lock-closed-outline"></ion-icon>
       <p>Ambiente Seguro</p>
       </Safe> 
-    </Header> 
+    </Header>
   )
 }
 
@@ -33,6 +33,7 @@ const Safe = styled.div`
   border-left: 1px solid black;
   p {
     font-size: 30px;
+    font-family: "Roboto";
   }
   ion-icon {
     font-size: 25px;
