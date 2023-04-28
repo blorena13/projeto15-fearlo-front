@@ -1,0 +1,40 @@
+import styled from "styled-components"
+import Logo from "../../assets/LogoFearlo.png"
+
+
+export default function Top() {
+  return (
+    <Header>
+      <img src={Logo} alt="logo Fearlo"/>
+      <Safe>
+      <ion-icon name="lock-closed-outline"></ion-icon>
+      <p>Ambiente Seguro</p>
+      </Safe> 
+    </Header> 
+  )
+}
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  background: lightblue;
+  img {
+    width: 300px;
+  }
+`
+const Safe = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-left: 1px solid black;
+  p {
+    font-size: 30px;
+  }
+  ion-icon {
+    font-size: 25px;
+  }
+`

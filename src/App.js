@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import Payment from "./pages/payment/Payment";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
        <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/signUp" element={<SignUp />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes> 
       </BrowserRouter>
     </PageContainer>
