@@ -7,7 +7,8 @@ input {
     border-radius: 5px;
     outline: none;
     width: calc(100% - 30px);
-    border: 1px solid #ccc;
+    border: none;
+    /* border: 1px solid #ccc; */
     padding: 15px;
     margin: 1px;
     :focus {
@@ -17,7 +18,7 @@ input {
 }
 form {
     display: flex;
-    background-color: rgba(219, 112, 147, 0.5);
+    background-color: #F3D011;
     padding: 40px;
     flex-direction: column;
     justify-content: center;
@@ -25,17 +26,17 @@ form {
     gap: 15px;
     width: 70%;
     border-radius: 5px;
-    /* box-shadow: 2px 2px 3px 0px #555; */
+    
 }
 
 button{
     outline: none;
     border: none;
     border-radius: 5px;
-    background-color: purple;
+    background-color: #E31C79;
     font-size: 20px;
     font-weight: 600;
-    color: black;
+    color: #FFFFFF;
     cursor: pointer;
     width: 100%;
     padding: 12px;
@@ -43,11 +44,12 @@ button{
 
 a {
         font-weight: 700;
-        font-size: 15px;
+        font-size: 20px;
         line-height: 18px;
-        color: black;
+        color: #FFFFFF;
         text-decoration: none;
         padding-top: 30px;
+        font-family: 'Ubuntu', sans-serif;
     }
 `
 
