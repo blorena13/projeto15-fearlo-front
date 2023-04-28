@@ -6,52 +6,79 @@ import Produto from "../../assets/produto.png"
 export default function ShoppingCart() {
   return (
     <Container>
-    <h1>Sacola</h1>
-    <Banner>
-      <img src={Logo} alt="Logo Novamente" />
-    </Banner>
-    <div>
-      <ProductAdded>
-        <div>
+        <h1>Sacola</h1>
+      <Banner>
+        <img src={Logo} alt="Logo Novamente" />
+      </Banner>
+      <ProductAdded> 
+        <Produtc>
           <img src={Produto} alt="Ração de dog" />
           <p>Texto descrição do produto</p>
-        </div>
+        </Produtc>       
+        <Price>
+          <p>71,71</p>
+          <div>
+            <button>-</button>
+            <p>1</p>
+            <button>+</button>
+          </div>
+        </Price>
       </ProductAdded>
-    </div>
     </Container>
-  
   )
 }
-
 const Container = styled.div`
-  width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 50px 0;
+  /* width: 80%; */
+  /* align-items: center; */
+  margin: 0 auto;
+  /* background: #000; */
   h1 {
-    padding-left: 30px;
-    font-size: 40px;
+    font-size: 35px;
     font-family: 'Roboto';
   }
 `
 const Banner = styled.div`
-  display: flex;
-  justify-content: center;
+  width: 100%;
   background: lightgreen;
   border-radius: 10px;
+  padding: 10px;  
   img {
-    width: 300px;
-  }
-  
+    width: 200px;
+  }  
 `
-
 const ProductAdded = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 20px 50px;
+    /* background: #000; */
+`
+const Produtc = styled.div `
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+      width: 80px;
+    }
+`
+const Price = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
   div {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    width: 100px;
+    /* height: 20px; */
     align-items: center;
-  }  
-  img {
-    width: 80px;
-  }  
+    border: 1px solid black;
+    border-radius: 10px;
+    /* background: #000; */
+    button {
+      width: 30px;
+    }
+  }
+
 `
