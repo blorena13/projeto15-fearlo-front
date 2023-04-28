@@ -23,8 +23,8 @@ export default function App() {
 
 const PageContainer = styled.main`
  background-color:  #F3D011;
-  width: calc(100vw - 50px);
-  max-height: 100vh;
+  /* width: calc(100vw - 50px); */
+  /* max-height: 100vh; */
   padding: 25px;
 `
 
