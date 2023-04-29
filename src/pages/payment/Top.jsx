@@ -19,8 +19,8 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30px;
-  background: lightblue;
+  padding: 0 50px;
+  background: white;
   position: fixed;
   top: 0;
   left: 0;

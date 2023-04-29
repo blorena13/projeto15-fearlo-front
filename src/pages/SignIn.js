@@ -4,8 +4,8 @@ import { useContext, useState } from "react";
 import { InfoContext } from "../context/InfoContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import logo from "/home/lorena/projeto15-fearlo-front/src/assets/logo.png";
-import logo1 from "/home/lorena/projeto15-fearlo-front/src/assets/logo1.png";
+import logo from "../assets/logo.png";
+import logo1 from "../assets/logo1.png";
 
 export default function SignIn(){
 
