@@ -1,72 +1,112 @@
+import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
-export default function Pay() {
+export default function Pay({quant, value}) {
+  const [cep, setCep] = useState()
+  const [cupom, setCupom] = useState()
+  const navigate = useNavigate()
+
+  function pay(e) {
+    e.preventDefault();
+    console.log("FOI")
+  }
+
   return (
     <Container>
-      <form action="">
+      <Form onSubmit={pay}>
         <label htmlFor="cep">Qual o CEP?</label>
-        <input type="cep" placeholder="00000-000"/>
-        <label htmlFor="text">Cupom de desconto</label>
-        <input type="text" placeholder="Digite seu cupom"/>
-      </form>
-      <Resumo>
-        <p>Resumo do pedido</p>
-        <Value>
-          <p>Valor dos produtos (1 item)</p>
-          <p>71,71</p>
-        </Value>
-        <Total>
-          <p>Total</p>
-          <p>71,71</p>
-        </Total>
-        <Buttons>
-          <button>Ir para o pagamento</button>
-          <button>escolher mais produtos</button>
-        </Buttons>
-      </Resumo>
+        <input type="cep" placeholder="00000-000" onChange={(e) => setCep(e.target.value)}/>
+        <label htmlFor="text" onChange={(e) => setCupom(e.target.value)}>Cupom de desconto</label>
+        <input type="text" placeholder="Digite seu cupom"/>   
+        <Resumo>
+          <h2>Resumo do pedido</h2>
+          <Total>
+            <p>Total</p>
+            <p>R$ {(quant*value).toFixed(2)}</p>
+          </Total>
+          <Buttons>
+            <button type="submit">Ir para o pagamento</button>
+            <button onClick={() => navigate("/signUp")}>escolher mais produtos</button>
+          </Buttons>
+        </Resumo>
+      </Form>
     </Container>
   )
 }
 
 const Container = styled.div`
-/* background: #000; */
-  form {
-    width: 100%;
-  }
+  width: 40%;
+  padding: 30px 20px;
+  margin: 0 30px;
   label {
     width: 100%;
     text-align: start;
     font-family: 'Roboto';
     font-weight: bolder;
+    line-height: 30px;
     font-size: 20px;
+    color: #454545;
   }
   input {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
+    font-size: 20px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 10px;
   }
 `
+const Form = styled.form`
+    width: 100%;
+    display: flex;    
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 30px; 
+    border-radius: 5px;
+    background-color: #F3D011;
+`
 const Resumo = styled.div`
+  h2 {
+    font-family: 'Roboto';
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+  }
   p {
     font-family: 'Roboto';
     font-size: 20px;
     font-weight: bold;
+    color: #454545;
   }
-`
-const Value = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
 `
 const Total = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 20px 0;
+  margin: 30px 0;
+  padding: 0 20px;
 `
 const Buttons = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
   button {
+    width: 200px;
     font-family: 'Roboto';
     margin: 10px 0;
-    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #E31C79;
+    font-size: 15px;
+    font-weight: 500;
+    color: #FFFFFF;
+    cursor: pointer;
+    width: 100%;
+    padding: 12px;
   }
 
 `

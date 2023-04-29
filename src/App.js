@@ -7,25 +7,17 @@ import Payment from "./pages/payment/Payment";
 
 export default function App() {
   return (
-    <PageContainer>
       <BrowserRouter>
-      <InfoProvider>
-      <Routes>
-      <Route path="/" element={<SignIn />} />
-      <Route path="/signUp" element={<SignUp />} />
-      <Route path="/payment" element={<Payment />} />
-      </Routes> 
+        <InfoProvider>
+          <Routes>
+            <Route path="/" element={<SignIn />} />
+            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/payment" element={<Payment />} />
+          </Routes> 
         </InfoProvider>
       </BrowserRouter>
-    </PageContainer>
   );
 }
 
-const PageContainer = styled.main`
- background-color:  #F3D011;
-  /* width: calc(100vw - 50px); */
-  /* max-height: 100vh; */
-  padding: 25px;
-`
 
 
