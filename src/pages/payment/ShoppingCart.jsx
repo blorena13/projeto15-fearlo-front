@@ -1,9 +1,32 @@
 import styled from "styled-components"
 import Logo from "../../assets/Logo Fearlo.png"
 import Produto from "../../assets/produto.png"
-// import { useState } from "react"
 
-export default function ShoppingCart({quant, setQuant, value}) {
+export default function ShoppingCart({sacola, setSacola}) {
+  console.log(sacola)
+
+  function addProduct(e) {
+    const image = e.target.parentNode.querySelector('.ProductImage').src;
+    const description = e.target.parentNode.querySelector('.ProductDescription').innerHTML
+    const price = e.target.parentNode.querySelector('.ProductPrice').innerHTML
+    const objetoAdicionado = {
+      image: image, 
+      text: description,
+      price: parseFloat(price.replace("R$ ", "")).toFixed(2),
+      quant: 1
+    }
+    // console.log(image)
+    // console.log(description)
+    console.log(price)
+    const newList = [...sacola, objetoAdicionado]
+    setSacola(newList)
+  }
+
+   function handleQuant(i, value) {
+    const newList = [...sacola]
+    newList[i].quant += value
+    setSacola(newList)
+   }
 
   return (
     <Container>
@@ -11,29 +34,46 @@ export default function ShoppingCart({quant, setQuant, value}) {
       <Banner>
         <img src={Logo} alt="Logo Novamente" />
       </Banner>
-      {/* inserir produtos com um MAP */}
-      {/* Separar em componentes ainda */}
-      <ProductAdded>
-        <Produtc>
-          <img src={Produto} alt="Ração de dog" />
-          <p>Texto descrição do produto</p>
-        </Produtc>       
-        <Price>
-          <p>R$ {quant < 0 ? "Error" : (quant*value).toFixed(2)}</p>
-          <div>
-            <button onClick={() => setQuant(quant - 1)}>-</button>
-            <p>{quant}</p>
-            <button onClick={() => setQuant(quant + 1)}>+</button>
-          </div>
-        </Price>
-      </ProductAdded>
+      {sacola.map((p, index) => 
+        <ProductAdded key={index}>
+          <Product>
+            <img src={p.image} alt={p.text} />
+            <p>{p.text}</p>
+          </Product> 
+          <Price>
+            <p>R$ {p.quant <= 0 ? "Error" : (p.quant*p.price).toFixed(2)}</p>
+            <div>
+              <button onClick={() => handleQuant(index, -1)}>-</button>
+              <p>{p.quant}</p>
+              <button onClick={() => handleQuant(index, +1)}>+</button>
+            </div>
+          </Price>
+        </ProductAdded>
+      )}
+     
       <Suggestions>
-        <h1>#Nome # Também pode gostar:</h1>
+        <h1>#Doguinho# Também pode gostar:</h1>
         <List>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div>
+            <img onClick={addProduct} src={Produto} alt="Ração Dog" className="ProductImage"/>
+            <p className="ProductDescription">Ração Dog</p>
+            <p className="ProductPrice">R$ 71.71</p>
+          </div>
+          <div>
+            <img onClick={addProduct} src={Produto} alt="Ração Dog" className="ProductImage"/>
+            <p className="ProductDescription">Ração Dog</p>
+            <p className="ProductPrice">R$ 71.71</p>
+          </div>
+          <div>
+            <img onClick={addProduct} src={Produto} alt="Ração Dog" className="ProductImage"/>
+            <p className="ProductDescription">Ração Dog</p>
+            <p className="ProductPrice">R$ 71.71</p>
+          </div>
+          <div>
+            <img onClick={addProduct} src={Produto} alt="Ração Dog" className="ProductImage"/>
+            <p className="ProductDescription">Ração Dog</p>
+            <p className="ProductPrice">R$ 71.71</p>
+          </div>               
         </List>
       </Suggestions>
     </Container>
@@ -41,6 +81,10 @@ export default function ShoppingCart({quant, setQuant, value}) {
 }
 const Container = styled.div`
   width: 70%;
+  /* height: 100%; */
+  @media (max-width: 800px) {
+    width: 100%;    
+  }
   h1 {
     font-size: 35px;
     font-weight: bolder;
@@ -51,7 +95,8 @@ const Container = styled.div`
 `
 const Banner = styled.div`
   width: 100%;
-  background-color: #c9c0c6a7;
+  /* background-color: #c9c0c6a7; */
+  background-color: white;
   border-radius: 10px;
   padding: 5px;  
   img {
@@ -64,10 +109,11 @@ const ProductAdded = styled.div`
     align-items: center; 
     padding: 20px;
     margin: 20px 0;
-    border: 1px solid #c9c0c6a7;
+    border: 1px solid #454545;
     border-radius: 10px;
+    background: white;
 `
-const Produtc = styled.div `
+const Product = styled.div `
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,10 +142,13 @@ const Price = styled.div`
     justify-content: space-between;
     width: 100px;
     align-items: center;
-    border-radius: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #454545;
     button {
       width: 30px;
       border: none;
+      background-color: white;
     }
   }
 `
@@ -109,19 +158,35 @@ const Suggestions = styled.div`
   width: 100%;
   min-height: 300px;
   padding: 20px;
+  /* padding-bottom: 50px; */
   margin: 30px 0;
-  border: 1px solid #c9c0c6a7;
+  border: 1px solid #454545;
   border-radius: 10px;
+  background: white;
 `
 const List = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  @media (max-width: 980px) {
+    justify-content: flex-start;
+  }
   div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100px;
     height: 100px;
     margin: 10px;
-    background: #ca1a1a;
+    img {
+      width: 100%;
+    }
+    p {
+      font-family: 'Roboto';
+      font-weight: bold;
+      color: #454545;
+      line-height: 25px;
+    }
   }
 `

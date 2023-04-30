@@ -3,18 +3,28 @@ import Top from "./Top";
 import ShoppingCart from "./ShoppingCart"
 import Pay from "./Pay"
 import { useState } from "react";
-
+import Produto from "../../assets/produto.png"
 
 
 export default function Payment() {
-  const [quant, setQuant] = useState(1)
-  const [value, setValue] = useState(71.71)
+  const [sacola, setSacola] = useState([
+    {
+      image: Produto, 
+      text: "Texto descrição do produto",
+      price: 71.71,
+      quant: 1
+    }
+  ])
+
+  const total = sacola.reduce((acc, item) => {    
+    return acc + (item.quant*item.price)
+  }, 0)
 
   return (
     <Container>
       <Top/>
-      <ShoppingCart quant={quant} setQuant={setQuant} value={value}/>
-      <Pay quant={quant} value={value}/>
+      <ShoppingCart sacola={sacola} setSacola={setSacola} />
+      <Pay total={total}/>
     </Container>
   )
 }
@@ -22,14 +32,12 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 30px;
-  margin-top: 170px;
-  /* background: #000; */
-  /* height: 100%; */
+  padding-top: 170px;
+  min-width: 500px;
+  background: lightyellow;
   @media (max-width: 800px) {
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
     gap: 50px;
-    /* background: lightpink; */
   }
 `

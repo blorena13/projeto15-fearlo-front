@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
-export default function Pay({quant, value}) {
+export default function Pay({total}) {
   const [cep, setCep] = useState()
   const [cupom, setCupom] = useState()
   const navigate = useNavigate()
@@ -18,12 +18,12 @@ export default function Pay({quant, value}) {
         <label htmlFor="cep">Qual o CEP?</label>
         <input type="cep" placeholder="00000-000" onChange={(e) => setCep(e.target.value)}/>
         <label htmlFor="text" onChange={(e) => setCupom(e.target.value)}>Cupom de desconto</label>
-        <input type="text" placeholder="Digite seu cupom"/>   
+        <input type="text" placeholder="Digite seu cupom"/>
         <Resumo>
           <h2>Resumo do pedido</h2>
           <Total>
             <p>Total</p>
-            <p>R$ {(quant*value).toFixed(2)}</p>
+            <p>R$ {total.toFixed(2)}</p>
           </Total>
           <Buttons>
             <button type="submit">Ir para o pagamento</button>
@@ -39,6 +39,10 @@ const Container = styled.div`
   width: 40%;
   padding: 30px 20px;
   margin: 0 30px;
+  @media (max-width: 800px) {
+    width: 100%;
+    padding: 0px;
+  }
   label {
     width: 100%;
     text-align: start;

@@ -21,6 +21,7 @@ const Header = styled.header`
   align-items: center;
   padding: 0 50px;
   background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: fixed;
   top: 0;
   left: 0;
@@ -37,10 +38,11 @@ const Safe = styled.div`
   align-items: center;
   gap: 8px;
   padding: 5px 10px;
-  border-left: 1px solid black;
+  border-left: 1px solid #454545;
   p {
-    font-size: 30px;
+    font-size: 28px;
     font-family: "Roboto";
+    color: #454545;
   }
   ion-icon {
     font-size: 25px;
