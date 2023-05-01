@@ -49,8 +49,7 @@ export default function ShoppingCart({sacola, setSacola}) {
             </div>
           </Price>
         </ProductAdded>
-      )}
-     
+      )}     
       <Suggestions>
         <h1>#Doguinho# Também pode gostar:</h1>
         <List>
@@ -156,7 +155,7 @@ const Suggestions = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  min-height: 300px;
+  min-height: 400px;
   padding: 20px;
   /* padding-bottom: 50px; */
   margin: 30px 0;
@@ -177,7 +176,6 @@ const List = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100px;
-    height: 100px;
     margin: 10px;
     img {
       width: 100%;
