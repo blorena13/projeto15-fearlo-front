@@ -15,11 +15,14 @@ export default function ShoppingCart({sacola, setSacola}) {
       price: parseFloat(price.replace("R$ ", "")).toFixed(2),
       quant: 1
     }
-    // console.log(image)
-    // console.log(description)
-    console.log(price)
+
     const newList = [...sacola, objetoAdicionado]
     setSacola(newList)
+  }
+
+  function removeProduct(e) {
+    const remover = e.target.parentNode
+
   }
 
    function handleQuant(i, value) {
@@ -48,6 +51,7 @@ export default function ShoppingCart({sacola, setSacola}) {
               <button onClick={() => handleQuant(index, +1)}>+</button>
             </div>
           </Price>
+          <ion-icon name="trash-outline"></ion-icon>
         </ProductAdded>
       )}     
       <Suggestions>
@@ -111,11 +115,15 @@ const ProductAdded = styled.div`
     border: 1px solid #454545;
     border-radius: 10px;
     background: white;
+    ion-icon {
+      font-size: 30px;
+    }
 `
 const Product = styled.div `
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  width: 200px;
   img {
       width: 80px;
     }
