@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import Logo from "../../assets/Logo Fearlo.png"
-import Produto from "../../assets/produto.png"
 import { IonIcon } from "@ionic/react"
 import {trash} from "ionicons/icons";
 import { useContext } from "react";
@@ -10,8 +9,7 @@ import { InfoContext } from "../../context/InfoContext";
 export default function ShoppingCart() {
   const {selected, setSelected}= useContext(InfoContext)
   const {products}= useContext(InfoContext)
-  const {pet} = useContext(InfoContext)
-  console.log(products)
+  const {user} = useContext(InfoContext)
 
   function addProduct(e) {
     const image = e.target.parentNode.querySelector('.ProductImage').src;
@@ -62,7 +60,7 @@ export default function ShoppingCart() {
         </ProductAdded>
       )}     
       <Suggestions>
-        <h1>{pet} também pode gostar:</h1>
+        <h1>{user.pet} também pode gostar:</h1>
         <List>
         {products.map((product, index) => 
           <div key={index}>
