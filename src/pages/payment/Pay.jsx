@@ -2,14 +2,13 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
-export default function Pay({total}) {
-  const [cep, setCep] = useState()
-  const [cupom, setCupom] = useState()
-  const navigate = useNavigate()
+
+export default function Pay({total, setIsOpen, cep, setCep, setCupom}) {
+  const navigate = useNavigate() 
 
   function pay(e) {
-    e.preventDefault();
-    console.log("FOI")
+    e.preventDefault()
+    setIsOpen(true)
   }
 
   return (
@@ -17,8 +16,8 @@ export default function Pay({total}) {
       <Form onSubmit={pay}>
         <label htmlFor="cep">Qual o CEP?</label>
         <input type="cep" placeholder="00000-000" onChange={(e) => setCep(e.target.value)}/>
-        <label htmlFor="text" onChange={(e) => setCupom(e.target.value)}>Cupom de desconto</label>
-        <input type="text" placeholder="Digite seu cupom"/>
+        {/* <label htmlFor="text" onChange={(e) => setCupom(e.target.value)}>Cupom de desconto</label>
+        <input type="text" placeholder="Digite seu cupom"/> */}
         <Resumo>
           <h2>Resumo do pedido</h2>
           <Total>
@@ -27,7 +26,7 @@ export default function Pay({total}) {
           </Total>
           <Buttons>
             <button type="submit">Ir para o pagamento</button>
-            <button onClick={() => navigate("/signUp")}>escolher mais produtos</button>
+            <button onClick={() => navigate("/home")}>escolher mais produtos</button>
           </Buttons>
         </Resumo>
       </Form>
@@ -38,7 +37,6 @@ export default function Pay({total}) {
 const Container = styled.div`
   width: 40%;
   padding: 30px 20px;
-  margin: 0 30px;
   @media (max-width: 800px) {
     width: 100%;
     padding: 0px;
