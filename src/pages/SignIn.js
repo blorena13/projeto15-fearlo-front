@@ -5,7 +5,7 @@ import { InfoContext } from "../context/InfoContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logo from "/home/lorena/projeto15-fearlo-front/src/assets/logo.png";
-import useQuickIn from "../hooks/useQuickIn";
+
 
 export default function SignIn(){
 
@@ -16,7 +16,7 @@ export default function SignIn(){
     function handleForm(e){
         setForm({...form, [e.target.name]: e.target.value});
     }
-    useQuickIn();
+   
 
     function handleLogin(e){
         e.preventDefault();
