@@ -1,26 +1,34 @@
-import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
-import styled from "styled-components";
-import signUp from "./pages/signUp";
-import signIn from "./pages/signIn";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
+import Payment from "./pages/payment/Payment";
+import Home from "./pages/Home";
+import Bird from "./pages/Bird";
+import Cat from "./pages/Cat";
+import Dog from "./pages/Dog";
+import Fish from "./pages/Fish";
+import Search from "./pages/Search";
+import { InfoProvider } from "./context/InfoContext";
 
 export default function App() {
+
   return (
-    <PageContainer>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/signUp" element={signUp} />
-          <Route path="/signIn" element={signIn} />
-        </Routes>
-      </BrowserRouter>
-    </PageContainer>
+    
+        <BrowserRouter>
+          <InfoProvider>
+            <Routes>
+              <Route path="/" element={<Home/>} />
+              <Route path="/bird" element={<Bird/>} />
+              <Route path="/cat" element={<Cat/>} />
+              <Route path="/dog" element={<Dog/>} />
+              <Route path="/fish" element={<Fish />} />
+              <Route path="/search" element={<Search/>} />
+              <Route path="/signIn" element={<SignIn />} />
+              <Route path="/signUp" element={<SignUp />} />
+              <Route path="/payment" element={<Payment/>} />
+            </Routes>
+          </InfoProvider> 
+        </BrowserRouter>
+    
   );
 }
-
-const PageContainer = styled.main`
- background-color: #8c11be;
-  width: calc(100vw - 50px);
-  max-height: 100vh;
-  padding: 25px;
-`
-
-
