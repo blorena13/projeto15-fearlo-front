@@ -9,6 +9,9 @@ import { InfoContext } from "../../context/InfoContext";
 
 export default function ShoppingCart() {
   const {selected, setSelected}= useContext(InfoContext)
+  const {products}= useContext(InfoContext)
+  const {pet} = useContext(InfoContext)
+  console.log(products)
 
   function addProduct(e) {
     const image = e.target.parentNode.querySelector('.ProductImage').src;
@@ -59,28 +62,15 @@ export default function ShoppingCart() {
         </ProductAdded>
       )}     
       <Suggestions>
-        <h1>#Doguinho# Também pode gostar:</h1>
+        <h1>{pet} também pode gostar:</h1>
         <List>
-          <div>
-            <img onClick={addProduct} src={Produto} alt="Ração Dog" className="ProductImage"/>
-            <p className="ProductDescription">Ração Dog</p>
-            <p className="ProductPrice">R$ 71.71</p>
-          </div>
-          <div>
-            <img onClick={addProduct} src={Produto} alt="Ração Dog" className="ProductImage"/>
-            <p className="ProductDescription">Ração Dog</p>
-            <p className="ProductPrice">R$ 71.71</p>
-          </div>
-          <div>
-            <img onClick={addProduct} src={Produto} alt="Ração Dog" className="ProductImage"/>
-            <p className="ProductDescription">Ração Dog</p>
-            <p className="ProductPrice">R$ 71.71</p>
-          </div>
-          <div>
-            <img onClick={addProduct} src={Produto} alt="Ração Dog" className="ProductImage"/>
-            <p className="ProductDescription">Ração Dog</p>
-            <p className="ProductPrice">R$ 71.71</p>
-          </div>               
+        {products.map((product, index) => 
+          <div key={index}>
+          <img onClick={addProduct} src={product.image} alt="Ração Dog" className="ProductImage"/>
+          <p className="ProductDescription">{product.description}</p>
+          <p className="ProductPrice">R$ {product.price.toFixed(2).replace(".",",")}</p>
+        </div>
+        )}            
         </List>
       </Suggestions>
     </Container>

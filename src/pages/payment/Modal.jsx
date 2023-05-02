@@ -11,10 +11,10 @@ export default function Modal({isOpen, setIsOpen, total, cep}) {
   const {selected}= useContext(InfoContext)
   const {user}= useContext(InfoContext)
   const navigate = useNavigate()
-  const { name, token} = user;
+  const { username, token} = user;
 
   function buy() {
-    const lista = {selected, name: name, token: token, cep: cep, total: (total).toFixed(2).replace(".",",")}
+    const lista = {selected, username: username, token: token, cep: cep, total: (total).toFixed(2).replace(".",",")}
     console.log(lista)
     axios.post(`${process.env.REACT_APP_API_URL}/payment`, lista)
       .then((res) => {

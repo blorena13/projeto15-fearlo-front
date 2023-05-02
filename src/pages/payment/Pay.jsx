@@ -40,11 +40,10 @@ const Container = styled.div`
   /* margin: 20px; */
   /* background: #000; */
   @media (max-width: 800px) {
-    width: 100%;
+    width: 90%;
     padding: 0px;
   }
   label {
-    /* width: 100%; */
     text-align: start;
     font-family: 'Roboto';
     font-weight: bolder;
