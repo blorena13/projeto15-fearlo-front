@@ -18,7 +18,7 @@ export default function ShoppingCart() {
     const objetoAdicionado = {
       image: image, 
       description: description,
-      price: price.replace("R$ ", "").toFixed(2),
+      price: parseFloat(price.replace("R$ ", "")).toFixed(2),
       quantity: 1
     }
     const newList = [...selected, objetoAdicionado]
@@ -42,14 +42,17 @@ export default function ShoppingCart() {
       <Banner>
         <img src={Logo} alt="Logo Novamente" />
       </Banner>
-      {selected.map((p, index) => 
+      {selected.map((p, index) =>
+        console.log(p.price)
+        console.log(p.quantity)
+        ( 
         <ProductAdded key={index}>
           <Product>
             <img src={p.image} alt={p.description} />
             <p>{p.description}</p>
           </Product> 
           <Price>
-            <p>R$ {(p.quantity) <= 0 ? "Error" : (p.quantity*p.price).toFixed(2).replace(".",",")}</p>
+            <p>R$ {(p.quantity) <= 0 ? "Error" : (p.quantity * p.price).toFixed(2).replace(".",",")}</p>
             <div>
               <button onClick={() => handleQuant(index, -1)}>-</button>
               <p>{p.quantity}</p>
@@ -57,7 +60,7 @@ export default function ShoppingCart() {
             </div>
           </Price>
           <Icon icon={trash} onClick={() => removeItem(index)} ></Icon>
-        </ProductAdded>
+        </ProductAdded>)
       )}     
       <Suggestions>
         <h1>{user.pet} também pode gostar:</h1>
