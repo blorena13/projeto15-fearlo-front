@@ -19,7 +19,7 @@ export default function Modal({isOpen, setIsOpen, total, cep}) {
     axios.post(`${process.env.REACT_APP_API_URL}/payment`, lista)
       .then((res) => {
         console.log("Compra concluída com sucesso!")
-        navigate("/home")
+        navigate("/")
       })
       .catch((err) => {
         console.log(err.response.data)
