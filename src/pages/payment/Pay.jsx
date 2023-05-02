@@ -22,7 +22,7 @@ export default function Pay({total, setIsOpen, setCep}) {
           <h2>Resumo do pedido</h2>
           <Total>
             <p>Total</p>
-            <p>R$ {total.toFixed(2)}</p>
+            <p>R$ {total.toFixed(2).replace(".",",")}</p>
           </Total>
           <Buttons>
             <button type="submit">Ir para o pagamento</button>
