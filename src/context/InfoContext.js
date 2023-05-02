@@ -7,9 +7,14 @@ export const InfoProvider = ({children}) => {
 
     const [user, setUser] = useState({});
     const [token, setToken] = useState(localStorage.getItem("token"));
+    const [selected, setSelected] = useState([]);
+    const [birdProducts, setBirdProducts] = useState([]);
+    const [catProducts, setCatProducts] = useState([]);
+    const [dogProducts, setDogProducts] = useState([]);
+    const [fishProducts, setFishProducts] = useState([]);
 
     return (
-        <InfoContext.Provider value={{user, setUser, token, setToken}}
+        <InfoContext.Provider value={{user, setUser,  selected, setSelected, birdProducts, setBirdProducts, catProducts, setCatProducts, dogProducts, setDogProducts, fishProducts, setFishProducts, token, setToken}}
         >
             {children}
         </InfoContext.Provider>

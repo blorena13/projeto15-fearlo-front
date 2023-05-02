@@ -80,11 +80,9 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 height: 100vh;
-
 img{
     border-radius: 50%;
 }
-
 a {
     margin-bottom: 100px;
     font-weight: 700;
@@ -107,9 +105,7 @@ input {
         border: 2px solid #ffb6b6;
         margin: 0px;
     } 
-
 }
-
 form{
      display: flex;
     background-color: #F3D011;
@@ -120,7 +116,6 @@ form{
     gap: 15px;
     width: 70%;
     border-radius: 5px;
-
 }
 button{
      outline: none;
@@ -134,6 +129,5 @@ button{
     width: 100%;
     padding: 12px;
 }
-
    
 `
