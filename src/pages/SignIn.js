@@ -32,7 +32,7 @@ export default function SignIn(){
             localStorage.setItem("token", token);
             console.log(setUser);
             console.log(user);
-            navigate("/homepage");
+            navigate("/");
         });
         promise.catch(err => {
             console.log(err.response.data.mensagem);
