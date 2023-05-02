@@ -17,9 +17,9 @@ export default function ShoppingCart() {
     const price = e.target.parentNode.querySelector('.ProductPrice').innerHTML
     const objetoAdicionado = {
       image: image, 
-      text: description,
+      description: description,
       price: parseFloat(price.replace("R$ ", "")).toFixed(2),
-      quant: 1
+      quantity: 1
     }
     const newList = [...selected, objetoAdicionado]
     setSelected(newList)
@@ -32,7 +32,7 @@ export default function ShoppingCart() {
   
   function handleQuant(i, value) {
     const newList = [...selected]
-    newList[i].quant += value
+    newList[i].quantity += value
     setSelected(newList)
   }
 
@@ -45,14 +45,14 @@ export default function ShoppingCart() {
       {selected.map((p, index) => 
         <ProductAdded key={index}>
           <Product>
-            <img src={p.image} alt={p.text} />
-            <p>{p.text}</p>
+            <img src={p.image} alt={p.description} />
+            <p>{p.description}</p>
           </Product> 
           <Price>
-            <p>R$ {p.quant <= 0 ? "Error" : (p.quant*p.price).toFixed(2).replace(".",",")}</p>
+            <p>R$ {(p.quantity) <= 0 ? "Error" : (p.quantity*p.price).toFixed(2).replace(".",",")}</p>
             <div>
               <button onClick={() => handleQuant(index, -1)}>-</button>
-              <p>{p.quant}</p>
+              <p>{p.quantity}</p>
               <button onClick={() => handleQuant(index, +1)}>+</button>
             </div>
           </Price>
