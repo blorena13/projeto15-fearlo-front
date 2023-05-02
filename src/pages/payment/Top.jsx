@@ -2,12 +2,13 @@ import styled from "styled-components"
 import Logo from "../../assets/Logo Fearlo.png"
 import { IonIcon } from "@ionic/react"
 import {lockClosedOutline} from 'ionicons/icons'
+import { Link } from "react-router-dom"
 
 
 export default function Top() {
   return (
       <Header>
-        <img src={Logo} alt="logo Fearlo"/>
+        <Link to="/"><img src={Logo} alt="logo Fearlo"/></Link>
         <Safe>
           <Icon icon={lockClosedOutline}></Icon>
           <p>Ambiente Seguro</p>
@@ -21,7 +22,7 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+  background: #aed8e4;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: fixed;
   z-index: 4;

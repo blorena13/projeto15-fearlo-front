@@ -11,16 +11,13 @@ export default function Modal({isOpen, setIsOpen, sacola, total, cep}) {
   const navigate = useNavigate()
   const { name, token, id} = user;
   const {text, quant, price} = sacola;
-  // console.log(user)
 
   function buy() {
     const lista = {name, token, id, text, quant, price, cep, total}
-    alert("Foi")
-
+    console.log(lista)
     axios.post(`${process.env.REACT_APP_API_URL}/payment`, lista)
       .then((res) => {
-        console.log(res.data)
-        alert("Compra concluída com sucesso!")
+        console.log("Compra concluída com sucesso!")
         navigate("/home")
       })
       .catch((err) => {
