@@ -1,6 +1,9 @@
 import styled from "styled-components"
 import Logo from "../../assets/Logo Fearlo.png"
 import Produto from "../../assets/produto.png"
+import { IonIcon } from "@ionic/react"
+import {trashBinOutline, lockClosedOutline} from "ionicons/icons";
+
 
 export default function ShoppingCart({sacola, setSacola}) {
   console.log(sacola)
@@ -50,7 +53,7 @@ export default function ShoppingCart({sacola, setSacola}) {
               <button onClick={() => handleQuant(index, +1)}>+</button>
             </div>
           </Price>
-          <ion-icon onClick={() => removeItem(index)} name="trash-outline"></ion-icon>
+          <Icon icon={trashBinOutline} onClick={() => removeItem(index)} name="trash-outline"></Icon>
         </ProductAdded>
       )}     
       <Suggestions>
@@ -95,7 +98,7 @@ const Container = styled.div`
   }
 `
 const Banner = styled.div`
-  width: 100%;
+  /* width: 100%; */
   background-color: white;
   border-radius: 10px;
   padding: 5px;  
@@ -112,9 +115,6 @@ const ProductAdded = styled.div`
     border: 1px solid #cfcfcf;
     border-radius: 10px;
     background: white;
-    ion-icon {
-      font-size: 30px;
-    }
 `
 const Product = styled.div `
   display: flex;
@@ -161,7 +161,7 @@ const Price = styled.div`
 const Suggestions = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  /* width: 100%; */
   min-height: 400px;
   padding: 20px;
   /* padding-bottom: 50px; */
@@ -194,4 +194,7 @@ const List = styled.div`
       line-height: 25px;
     }
   }
+`
+const Icon = styled(IonIcon)`
+  font-size: 30px;
 `

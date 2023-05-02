@@ -1,4 +1,4 @@
-import { useState } from "react"
+// import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
@@ -37,12 +37,14 @@ export default function Pay({total, setIsOpen, setCep}) {
 const Container = styled.div`
   width: 40%;
   padding: 30px 20px;
+  /* margin: 20px; */
+  /* background: #000; */
   @media (max-width: 800px) {
     width: 100%;
     padding: 0px;
   }
   label {
-    width: 100%;
+    /* width: 100%; */
     text-align: start;
     font-family: 'Roboto';
     font-weight: bolder;
@@ -51,23 +53,26 @@ const Container = styled.div`
     color: #454545;
   }
   input {
-    width: 100%;
+    width: 80%;
+    /* margin: 0 auto; */
     margin-bottom: 25px;
     font-size: 20px;
     border-radius: 5px;
     outline: none;
     border: none;
     padding: 10px;
+    /* background: #000; */
   }
 `
 const Form = styled.form`
     width: 100%;
-    display: flex;    
-    flex-direction: column;
+    /* display: flex;     */
+    /* justify-content: center; */
     padding: 10px;
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
     border-radius: 5px;
     background-color: #F3D011;
+    /* background: #000; */
 `
 const Resumo = styled.div`
   h2 {
@@ -90,13 +95,13 @@ const Total = styled.div`
   padding: 0 20px;
 `
 const Buttons = styled.div`
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   button {
-    width: 200px;
+    /* width: 200px; */
     font-family: 'Roboto';
     margin: 10px 0;
     outline: none;
