@@ -6,14 +6,15 @@ import { InfoContext } from "../../context/InfoContext";
 import { IonIcon } from "@ionic/react";
 import { closeCircleOutline } from "ionicons/icons";
 
-export default function Modal({isOpen, setIsOpen, sacola, total, cep}) {
+
+export default function Modal({isOpen, setIsOpen, total, cep}) {
+  const {selected}= useContext(InfoContext)
   const {user}= useContext(InfoContext)
   const navigate = useNavigate()
-  const { name, token, id} = user;
-  const {text, quant, price} = sacola;
+  const { name, token} = user;
 
   function buy() {
-    const lista = {name, token, id, text, quant, price, cep, total}
+    const lista = {selected, name: name, token: token, cep: cep, total: (total).toFixed(2).replace(".",",")}
     console.log(lista)
     axios.post(`${process.env.REACT_APP_API_URL}/payment`, lista)
       .then((res) => {
@@ -30,14 +31,14 @@ export default function Modal({isOpen, setIsOpen, sacola, total, cep}) {
     <ModalIsOpen isOpen={isOpen}>
       <Icon icon={closeCircleOutline} onClick={() => setIsOpen(false)}></Icon>
       <Content>
-        {sacola.map((item, index) =>
+        {selected.map((item, index) =>
           <Item key={index}>
             <p>{item.text}</p>
             <p>{item.quant}</p>
-            <p>{item.price}</p>
+            <p>{item.price.replace(".",",")}</p>
           </Item>        
         )}
-        <h1>TOTAL: {(total).toFixed(2)}</h1>
+        <h1>TOTAL: {(total).toFixed(2).replace(".",",")}</h1>
         <button onClick={buy}>Finalizar compra</button>             
       </Content>
     </ModalIsOpen>

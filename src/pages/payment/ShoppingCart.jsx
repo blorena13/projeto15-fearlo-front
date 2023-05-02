@@ -3,10 +3,12 @@ import Logo from "../../assets/Logo Fearlo.png"
 import Produto from "../../assets/produto.png"
 import { IonIcon } from "@ionic/react"
 import {trash} from "ionicons/icons";
+import { useContext } from "react";
+import { InfoContext } from "../../context/InfoContext";
 
 
-export default function ShoppingCart({sacola, setSacola}) {
-  console.log(sacola)
+export default function ShoppingCart() {
+  const {selected, setSelected}= useContext(InfoContext)
 
   function addProduct(e) {
     const image = e.target.parentNode.querySelector('.ProductImage').src;
@@ -18,19 +20,19 @@ export default function ShoppingCart({sacola, setSacola}) {
       price: parseFloat(price.replace("R$ ", "")).toFixed(2),
       quant: 1
     }
-    const newList = [...sacola, objetoAdicionado]
-    setSacola(newList)
+    const newList = [...selected, objetoAdicionado]
+    setSelected(newList)
   }
 
   function removeItem(i) {
-    const newSacola = sacola.filter((item, index) => index !== i)
-    setSacola(newSacola)
+    const newSelected = selected.filter((item, index) => index !== i)
+    setSelected(newSelected)
   }
   
   function handleQuant(i, value) {
-    const newList = [...sacola]
+    const newList = [...selected]
     newList[i].quant += value
-    setSacola(newList)
+    setSelected(newList)
   }
 
   return (
@@ -39,14 +41,14 @@ export default function ShoppingCart({sacola, setSacola}) {
       <Banner>
         <img src={Logo} alt="Logo Novamente" />
       </Banner>
-      {sacola.map((p, index) => 
+      {selected.map((p, index) => 
         <ProductAdded key={index}>
           <Product>
             <img src={p.image} alt={p.text} />
             <p>{p.text}</p>
           </Product> 
           <Price>
-            <p>R$ {p.quant <= 0 ? "Error" : (p.quant*p.price).toFixed(2)}</p>
+            <p>R$ {p.quant <= 0 ? "Error" : (p.quant*p.price).toFixed(2).replace(".",",")}</p>
             <div>
               <button onClick={() => handleQuant(index, -1)}>-</button>
               <p>{p.quant}</p>
