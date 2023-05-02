@@ -26,8 +26,8 @@ export default function SignIn(){
 
         const promise = axios.post(urlPost, body);
         promise.then(res => {
-            const {token, id, pet, name, image } = res.data;
-            setUser({token, id, pet, name, image});
+            const {token, id, pet, userName, image } = res.data;
+            setUser({token, id, pet, userName, image});
             setToken(token);
             localStorage.setItem("token", token);
             console.log(setUser);

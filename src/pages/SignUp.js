@@ -94,7 +94,7 @@ export default function SignUp(){
                 <button type="submit">Cadastrar</button>
             </form>
 
-            <Link to="/">
+            <Link to="/signIn">
                 Já tem uma conta? Entre agora!
             </Link>
 
