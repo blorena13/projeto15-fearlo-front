@@ -36,7 +36,7 @@ export default function Modal({isOpen, setIsOpen, total, cep}) {
           <Item key={index}>
             <p>{item.text}</p>
             <p>{item.quant}</p>
-            <p>{item.price.replace(".",",")}</p>
+            <p>{item.price}</p>
           </Item>        
         )}
         <h1>TOTAL: {(total).toFixed(2).replace(".",",")}</h1>
