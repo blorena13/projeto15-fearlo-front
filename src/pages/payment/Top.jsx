@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import Logo from "../../assets/Logo Fearlo.png"
+import { IonIcon } from "@ionic/react"
+import {lockClosedOutline} from 'ionicons/icons'
 
 
 export default function Top() {
@@ -7,7 +9,7 @@ export default function Top() {
       <Header>
         <img src={Logo} alt="logo Fearlo"/>
         <Safe>
-          <ion-icon name="lock-closed-outline"></ion-icon>
+          <Icon icon={lockClosedOutline}></Icon>
           <p>Ambiente Seguro</p>
         </Safe> 
       </Header>
@@ -43,10 +45,11 @@ const Safe = styled.div`
     font-family: "Roboto";
     color: #454545;
   }
-  ion-icon {
-    font-size: 25px;
-  }
   @media (max-width: 600px) {
     display: none;
   }
+`
+
+const Icon = styled(IonIcon)`
+  font-size: 30px;
 `

@@ -3,6 +3,8 @@ import axios from "axios";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { InfoContext } from "../../context/InfoContext";
+import { IonIcon } from "@ionic/react";
+import { closeCircleOutline } from "ionicons/icons";
 
 export default function Modal({isOpen, setIsOpen, sacola, total, cep}) {
   const {user}= useContext(InfoContext)
@@ -29,7 +31,7 @@ export default function Modal({isOpen, setIsOpen, sacola, total, cep}) {
 
   return (
     <ModalIsOpen isOpen={isOpen}>
-      <ion-icon name="close-circle-outline" onClick={() => setIsOpen(false)}></ion-icon>
+      <Icon icon={closeCircleOutline} onClick={() => setIsOpen(false)}></Icon>
       <Content>
         {sacola.map((item, index) =>
           <Item key={index}>
@@ -108,4 +110,9 @@ const Item = styled.div`
     font-weight: bolder;
   }
 
+`
+
+const Icon = styled(IonIcon)`
+  font-size: 30px;
+  color: white;
 `

@@ -2,7 +2,7 @@ import styled from "styled-components"
 import Logo from "../../assets/Logo Fearlo.png"
 import Produto from "../../assets/produto.png"
 import { IonIcon } from "@ionic/react"
-import {trashBinOutline, lockClosedOutline} from "ionicons/icons";
+import {trash} from "ionicons/icons";
 
 
 export default function ShoppingCart({sacola, setSacola}) {
@@ -53,7 +53,7 @@ export default function ShoppingCart({sacola, setSacola}) {
               <button onClick={() => handleQuant(index, +1)}>+</button>
             </div>
           </Price>
-          <Icon icon={trashBinOutline} onClick={() => removeItem(index)} name="trash-outline"></Icon>
+          <Icon icon={trash} onClick={() => removeItem(index)} ></Icon>
         </ProductAdded>
       )}     
       <Suggestions>
@@ -197,4 +197,5 @@ const List = styled.div`
 `
 const Icon = styled(IonIcon)`
   font-size: 30px;
+  color: black;
 `
