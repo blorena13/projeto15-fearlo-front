@@ -18,7 +18,7 @@ export default function ShoppingCart() {
     const objetoAdicionado = {
       image: image, 
       description: description,
-      price: parseFloat(price.replace("R$ ", "")).toFixed(2),
+      price: price.replace("R$ ", "").toFixed(2),
       quantity: 1
     }
     const newList = [...selected, objetoAdicionado]
