@@ -21,7 +21,7 @@ export default function Modal({isOpen, setIsOpen, sacola, total, cep}) {
       .then((res) => {
         console.log(res.data)
         alert("Compra concluída com sucesso!")
-        navigate("/home")
+        navigate("/")
       })
       .catch((err) => {
         console.log(err.response.data)

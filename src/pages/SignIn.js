@@ -31,7 +31,7 @@ export default function SignIn(){
             setToken(token);
             localStorage.setItem("token", token);
             console.log(setUser);
-            console.log(user);
+            console.log({user});
             navigate("/");
         });
         promise.catch(err => {

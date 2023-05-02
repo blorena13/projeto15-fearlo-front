@@ -34,7 +34,8 @@ export default function Cat(){
         console.log(obj);
         let final = checkArray(obj, add);
         setSelected(final);
-        setCatProducts(catProducts)
+        const newlist = [...catProducts]
+        setCatProducts(newlist)
         console.log(selected);
     }
 

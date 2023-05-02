@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 //import { test_array } from "../components/test_array";
 
 export default function Fish(){
-    const {fishProducts, selected, setSelected} = useContext(InfoContext);
+    const {fishProducts, selected, setSelected, setFishProducts} = useContext(InfoContext);
     const navigate = useNavigate();
 
     useEffect(() =>{
@@ -40,6 +40,8 @@ export default function Fish(){
         console.log(obj);
         let final = checkArray(obj, add);
         setSelected(final);
+        const newlist = [...fishProducts]
+        setFishProducts(newlist);
         console.log(selected);
     }
 

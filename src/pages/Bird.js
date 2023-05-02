@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 //import { test_array } from "../components/test_array";  
 
 export default function Bird(){
-    const {birdProducts, selected, setSelected} = useContext(InfoContext);
+    const {birdProducts, selected, setSelected, setBirdProducts} = useContext(InfoContext);
     const navigate = useNavigate();
 
     useEffect(() =>{
@@ -35,6 +35,8 @@ export default function Bird(){
         console.log(obj);
         let final = checkArray(obj, add);
         setSelected(final);
+        const newlist = [...birdProducts]
+        setBirdProducts(newlist);
         console.log(selected);
     }
 

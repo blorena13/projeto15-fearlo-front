@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import { IonIcon } from "@ionic/react";
 import {searchOutline} from "ionicons/icons";
 import {cartOutline} from "ionicons/icons";
+import { logOutOutline } from "ionicons/icons";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { InfoContext } from "../context/InfoContext";
+import axios from "axios";
 
 export default function Header(){
-    const {searched, setSearched} = useContext(InfoContext);
+    const {searched, setSearched, token, user, setToken} = useContext(InfoContext);
     const navigate = useNavigate();
 
     function toHome(){
@@ -18,6 +20,46 @@ export default function Header(){
 
     function toSearch(){
         navigate("/search")
+    }
+
+    function logout(){
+        const config = { headers: { Authorization: `Bearer ${token}`}}
+        /*
+        const promise = axios.post("http://localhost:5000/logout", {}, config);
+        promise.then((response) =>{
+            setToken(null);
+        }).catch((e) => {
+            console.log(e);
+        })
+        */
+       setToken(null);
+    }
+
+    function pay(){
+        if(token === null){
+            alert('Você precisa logar para ir ao carrinho');
+        } else{
+            navigate("/payment");
+        }
+    }
+
+    let logged;
+    let online = (!user);
+    
+    if(token === null){
+        logged = (
+            <>
+                <p>Faça <Link to={"/signIn"}>LOGIN</Link></p>
+                <p>Crie seu <Link to={"/signUp"}>CADASTRO</Link></p>
+            </>
+        )
+    } else{
+        logged = (
+            <>
+                <Pic src={user.image} />
+                <Icon onClick={logout} icon={logOutOutline} />
+            </>
+        )
     }
 
     return(
@@ -29,11 +71,8 @@ export default function Header(){
                     <Icon icon={searchOutline} />
                 </Button>
             </Search>
-            <p>Faça <Link to={"/signIn"}>LOGIN</Link></p>
-            <p>Crie seu <Link to={"/signUp"}>CADASTRO</Link></p>
-            <Link to={"/payment"}>
-                <Icon icon={cartOutline} />
-            </Link>
+            {logged}
+            <Icon onClick={pay} icon={cartOutline} />
         </Head>
     )
 }
@@ -101,3 +140,8 @@ const Button = styled.button`
 const Icon = styled(IonIcon)`
     font-size: 30px;
 `;
+
+const Pic = styled.img`
+    width: 50px;
+    border-radius: 50px;
+`

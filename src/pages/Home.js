@@ -4,13 +4,14 @@ import { useContext } from "react";
 import Header from "../components/Header";
 import Nav from "../components/Menu";
 import {cartOutline} from "ionicons/icons";
-//import { test_array } from "../components/test_array";
 import axios from "axios";
 import { InfoContext } from "../context/InfoContext";
 
 export default function Home(){
+    const url = `${process.env.REACT_APP_API_URL}`
+    console.log(url);
     const {selected, setSelected, setBirdProducts, setCatProducts, setDogProducts, setFishProducts, products, setProducts} = useContext(InfoContext);
-    const promise = axios.get("http://localhost:5000/");
+    const promise = axios.get(url);
     let bird = [];
     let cat = [];
     let dog = [];

@@ -32,7 +32,8 @@ export default function Dog(){
         console.log(obj);
         let final = checkArray(obj, add);
         setSelected(final);
-        setDogProducts(dogProducts);
+        const newlist = [...dogProducts]
+        setDogProducts(newlist);
         console.log(selected);
     }
 
