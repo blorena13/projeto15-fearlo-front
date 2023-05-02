@@ -8,7 +8,7 @@ import { closeCircleOutline } from "ionicons/icons";
 
 
 export default function Modal({isOpen, setIsOpen, total, cep}) {
-  const {selected}= useContext(InfoContext)
+  const {selected, setSelected}= useContext(InfoContext)
   const {user}= useContext(InfoContext)
   const navigate = useNavigate()
   const { username, token} = user;
@@ -20,6 +20,7 @@ export default function Modal({isOpen, setIsOpen, total, cep}) {
       .then((res) => {
         console.log(res.data)
         alert("Compra concluída com sucesso!")
+        setSelected()
         navigate("/")
       })
       .catch((err) => {
