@@ -9,10 +9,11 @@ export default function Modal({isOpen, setIsOpen, sacola, total, cep}) {
   const navigate = useNavigate()
   const { name, token, id} = user;
   const {text, quant, price} = sacola;
-  console.log(user)
+  // console.log(user)
 
   function buy() {
     const lista = {name, token, id, text, quant, price, cep, total}
+    alert("Foi")
 
     axios.post(`${process.env.REACT_APP_API_URL}/payment`, lista)
       .then((res) => {
