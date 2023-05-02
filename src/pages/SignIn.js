@@ -5,17 +5,18 @@ import { InfoContext } from "../context/InfoContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logo from "/home/lorena/projeto15-fearlo-front/src/assets/logo.png";
-import logo1 from "/home/lorena/projeto15-fearlo-front/src/assets/logo1.png";
+import useQuickIn from "../hooks/useQuickIn";
 
 export default function SignIn(){
 
     const [form, setForm] = useState({email: "", password: ""})
-    const {user, setUser}= useContext(InfoContext);
+    const {user, setUser, setToken}= useContext(InfoContext);
     const navigate = useNavigate();
 
     function handleForm(e){
         setForm({...form, [e.target.name]: e.target.value});
     }
+    useQuickIn();
 
     function handleLogin(e){
         e.preventDefault();
@@ -27,6 +28,9 @@ export default function SignIn(){
         promise.then(res => {
             const {token, id, pet, name, image } = res.data;
             setUser({token, id, pet, name, image});
+            setToken(token);
+            localStorage.setItem("token", token);
+            console.log(setUser);
             console.log(user);
             navigate("/homepage");
         });
