@@ -46,6 +46,12 @@ const Head=  styled.div`
     p{
         width: 133.5px;
         font-family: 'Roboto';
+        text-decoration: none;
+    }
+    a{
+        text-decoration: none;
+        color: black;
+        font-weight: 700;
     }
 `;
 
@@ -63,15 +69,28 @@ const Search = styled.div`
 const SearchBar = styled.input`
     width: 90%;
     margin-right: 2%;
+    font-size: 20px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 15px;
+    :focus {
+        border: 2px solid #ffb6b6;
+        margin: 0px;
+    } 
 `;
 
 const Button = styled.button`
     width: 50px;
     height: 50px;
     background-color: #aed8e4;
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 const Icon = styled(IonIcon)`
     font-size: 30px;
-    margin-bottom: 30px;
 `;

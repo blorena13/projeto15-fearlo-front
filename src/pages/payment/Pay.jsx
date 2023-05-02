@@ -26,7 +26,7 @@ export default function Pay({total, setIsOpen, setCep}) {
           </Total>
           <Buttons>
             <button type="submit">Ir para o pagamento</button>
-            <button onClick={() => navigate("/home")}>escolher mais produtos</button>
+            <button onClick={() => navigate("/")}>escolher mais produtos</button>
           </Buttons>
         </Resumo>
       </Form>
