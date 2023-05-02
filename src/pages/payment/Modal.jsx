@@ -1,13 +1,36 @@
 import styled from "styled-components";
-
+import axios from "axios";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { InfoContext } from "../../context/InfoContext";
 
 export default function Modal({isOpen, setIsOpen, sacola, total}) {
+  const {user}= useContext(InfoContext)
+  const navigate = useNavigate()
+  const { name, token, id} = user;
+  const {text, quant, price} = sacola;
+  console.log(user)
+
+  function buy() {
+    const lista = {name, token, id, text, quant, price, total}
+
+    axios.post(`${process.env.REACT_APP_API_URL}/buy`, lista)
+      .then((res) => {
+        console.log(res.data)
+        alert("Compra concluída com sucesso!")
+        navigate("/home")
+      })
+      .catch((err) => {
+        console.log(err.response.data)
+      })
+  }
+
 
   return (
     <ModalIsOpen isOpen={isOpen}>
       <ion-icon name="close-circle-outline" onClick={() => setIsOpen(false)}></ion-icon>
       <Content>
-        {sacola.map((item, index) => 
+        {sacola.map((item, index) =>
           <Item key={index}>
             <p>{item.text}</p>
             <p>{item.quant}</p>
@@ -15,7 +38,7 @@ export default function Modal({isOpen, setIsOpen, sacola, total}) {
           </Item>        
         )}
         <h1>TOTAL: {(total).toFixed(2)}</h1>
-        <button>Finalizar compra</button>             
+        <button onClick={buy}>Finalizar compra</button>             
       </Content>
     </ModalIsOpen>
   )
