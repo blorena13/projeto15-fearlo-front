@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
 
-export default function Pay({total, setIsOpen, cep, setCep, setCupom}) {
+export default function Pay({total, setIsOpen, setCep}) {
   const navigate = useNavigate() 
 
   function pay(e) {

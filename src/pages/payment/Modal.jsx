@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { InfoContext } from "../../context/InfoContext";
 
-export default function Modal({isOpen, setIsOpen, sacola, total}) {
+export default function Modal({isOpen, setIsOpen, sacola, total, cep}) {
   const {user}= useContext(InfoContext)
   const navigate = useNavigate()
   const { name, token, id} = user;
@@ -12,9 +12,9 @@ export default function Modal({isOpen, setIsOpen, sacola, total}) {
   console.log(user)
 
   function buy() {
-    const lista = {name, token, id, text, quant, price, total}
+    const lista = {name, token, id, text, quant, price, cep, total}
 
-    axios.post(`${process.env.REACT_APP_API_URL}/buy`, lista)
+    axios.post(`${process.env.REACT_APP_API_URL}/payment`, lista)
       .then((res) => {
         console.log(res.data)
         alert("Compra concluída com sucesso!")

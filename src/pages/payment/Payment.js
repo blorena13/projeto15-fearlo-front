@@ -26,13 +26,12 @@ export default function Payment() {
 
   return (
     <Container>
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen} sacola={sacola} total={total} />
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} sacola={sacola} total={total} cep={cep}/>
       <Top/>
       <ShoppingCart sacola={sacola} setSacola={setSacola} />
       <Pay 
         total={total} 
         setIsOpen={setIsOpen} 
-        cep={cep} 
         setCep={setCep} 
         // cupom={cupom}
         // setCupom={setCupom}
