@@ -14,7 +14,7 @@ export default function Modal({isOpen, setIsOpen, total, cep}) {
   const { username, token} = user;
 
   function buy() {
-    const lista = {selected, username: username, token: token, cep: cep, total: (total).toFixed(2).replace(".",",")}
+    const lista = {selected, username: username, token: token, cep: cep, total: (total).toFixed(2)}
     console.log(lista)
     axios.post(`${process.env.REACT_APP_API_URL}/payment`, lista)
       .then((res) => {
@@ -39,7 +39,7 @@ export default function Modal({isOpen, setIsOpen, total, cep}) {
             <p>{item.price}</p>
           </Item>        
         )}
-        <h1>TOTAL: {(total).toFixed(2).replace(".",",")}</h1>
+        <h1>TOTAL: {(total).toFixed(2)}</h1>
         <button onClick={buy}>Finalizar compra</button>             
       </Content>
     </ModalIsOpen>
