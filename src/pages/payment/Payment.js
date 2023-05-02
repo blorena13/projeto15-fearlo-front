@@ -2,39 +2,29 @@ import styled from "styled-components"
 import Top from "./Top";
 import ShoppingCart from "./ShoppingCart"
 import Pay from "./Pay"
-import { useState } from "react";
-import Produto from "../../assets/produto.png"
+import { useContext, useState } from "react";
 import Modal from "./Modal";
+import { InfoContext } from "../../context/InfoContext";
 
 
 export default function Payment() {
   const [isOpen, setIsOpen] = useState(false)
   const [cep, setCep] = useState()
-  const [cupom, setCupom] = useState()
-  const [sacola, setSacola] = useState([
-    {
-      image: Produto, 
-      text: "Texto descrição do produto",
-      price: 71.71,
-      quant: 1
-    }
-  ])
+  const {selected}= useContext(InfoContext)
 
-  const total = sacola.reduce((acc, item) => {    
+  const total = selected.reduce((acc, item) => {    
     return acc + (item.quant*item.price)
   }, 0)
 
   return (
     <Container>
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen} sacola={sacola} total={total} cep={cep}/>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} total={total} cep={cep}/>
       <Top/>
-      <ShoppingCart sacola={sacola} setSacola={setSacola} />
+      <ShoppingCart />
       <Pay 
         total={total} 
         setIsOpen={setIsOpen} 
-        setCep={setCep} 
-        // cupom={cupom}
-        // setCupom={setCupom}
+        setCep={setCep}
       />
     </Container>
   )
