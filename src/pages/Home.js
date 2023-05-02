@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IonIcon } from "@ionic/react";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import Header from "../components/Header";
 import Nav from "../components/Menu";
 import {cartOutline} from "ionicons/icons";
@@ -9,8 +9,7 @@ import axios from "axios";
 import { InfoContext } from "../context/InfoContext";
 
 export default function Home(){
-    const [products,setProducts] = useState([]);
-    const {selected, setSelected, setBirdProducts, setCatProducts, setDogProducts, setFishProducts} = useContext(InfoContext);
+    const {selected, setSelected, setBirdProducts, setCatProducts, setDogProducts, setFishProducts, products, setProducts} = useContext(InfoContext);
     const promise = axios.get("http://localhost:5000/");
     let bird = [];
     let cat = [];
@@ -48,14 +47,8 @@ export default function Home(){
         return arr;
       }
       
-    function changeCart(price, image, description){
+    function changeCart(obj){
         let add = selected;
-        const obj = {
-            price: price,
-            image: image,
-            description: description,
-            quantity: 1
-        }
         console.log(obj);
         let final = checkArray(obj, add);
         setSelected(final);
@@ -69,13 +62,30 @@ export default function Home(){
             <Nav />
             <Products>
                 {products.map((index, i) => {
+                    let text = '';
+                    let color = '';
+                    const obj = {
+                        price: index.price,
+                        image: index.image,
+                        description: index.description,
+                        quantity: 1
+                    }
+                    const contains = selected.findIndex(item => JSON.stringify(item) === JSON.stringify(obj));
+                    if(contains !== -1){
+                        text = 'Remova do Carrinho';
+                        color = '#E31C79'
+                    } else{
+                        text = 'Adicione ao Carrinho';
+                        color = '#F3D011';
+                    }
+
                     return(
                         <ProductsCard key={i}>
                             <ProductImg src={index.image} />
                             <ProductDescription>{index.description}</ProductDescription>
                             <p>Preço Unitário: R$ {index.price}</p>
-                            <Quantity onClick={() => changeCart(index.price, index.image, index.description)}>
-                                <p>Adicione ao Carrinho</p>
+                            <Quantity color={color  } onClick={() => changeCart(obj)}>
+                                <p>{text}</p>
                                 <Change icon={cartOutline} />
                             </Quantity>
                         </ProductsCard>
@@ -141,7 +151,7 @@ const Quantity = styled.div`
     display: flex;
     width: 100%;
     align-items: center;
-    background-image: linear-gradient(245deg, #E31C79, #F3D011);
+    background-color: ${props => props.color};
     justify-content: space-evenly;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;

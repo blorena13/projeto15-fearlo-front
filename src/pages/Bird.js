@@ -5,10 +5,20 @@ import Header from "../components/Header";
 import Nav from "../components/Menu";
 import {useContext} from "react";
 import { InfoContext } from "../context/InfoContext";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 //import { test_array } from "../components/test_array";  
 
 export default function Bird(){
     const {birdProducts, selected, setSelected} = useContext(InfoContext);
+    const navigate = useNavigate();
+
+    useEffect(() =>{
+        if(birdProducts.length === 0){
+            navigate("/");
+        }
+    })
+
 
     function checkArray(obj, arr) {
         const index = arr.findIndex(item => JSON.stringify(item) === JSON.stringify(obj));
@@ -20,14 +30,8 @@ export default function Bird(){
         return arr;
       }
       
-    function changeCart(price, image, description){
+    function changeCart(obj){
         let add = selected;
-        const obj = {
-            price: price,
-            image: image,
-            description: description,
-            quantity: 1
-        }
         console.log(obj);
         let final = checkArray(obj, add);
         setSelected(final);
@@ -40,19 +44,36 @@ export default function Bird(){
             <Aux />
             <Nav />
             <Products>
-            {birdProducts.map((index) => {
-                return(
-                    <ProductsCard>
-                        <ProductImg src={index.image} />
-                        <ProductDescription>{index.description}</ProductDescription>
-                        <p>Preço Unitário: R$ {index.price}</p>
-                        <Quantity onClick={() => changeCart(index.price, index.image, index.description)}>
-                            <p>Adicione ao Carrinho</p>
-                            <Change icon={cartOutline} />
-                        </Quantity>
-                    </ProductsCard>
-                )
-            })}
+                {birdProducts.map((index, i) => {
+                    let text = '';
+                    let color = '';
+                    const obj = {
+                        price: index.price,
+                        image: index.image,
+                        description: index.description,
+                        quantity: 1
+                    }
+                    const contains = selected.findIndex(item => JSON.stringify(item) === JSON.stringify(obj));
+                    if(contains !== -1){
+                        text = 'Remova do Carrinho';
+                        color = '#E31C79'
+                    } else{
+                        text = 'Adicione ao Carrinho';
+                        color = '#F3D011';
+                    }
+
+                    return(
+                        <ProductsCard key={i}>
+                            <ProductImg src={index.image} />
+                            <ProductDescription>{index.description}</ProductDescription>
+                            <p>Preço Unitário: R$ {index.price}</p>
+                            <Quantity color={color} onClick={() => changeCart(obj)}>
+                                <p>{text}</p>
+                                <Change icon={cartOutline} />
+                            </Quantity>
+                        </ProductsCard>
+                    )
+                })}
             </Products>
         </Container>
     )
@@ -111,7 +132,7 @@ const Quantity = styled.div`
     display: flex;
     width: 100%;
     align-items: center;
-    background-color: #E31C79;
+    background-color: ${props => props.color};
     justify-content: space-evenly;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;

@@ -12,9 +12,11 @@ export const InfoProvider = ({children}) => {
     const [catProducts, setCatProducts] = useState([]);
     const [dogProducts, setDogProducts] = useState([]);
     const [fishProducts, setFishProducts] = useState([]);
+    const [products,setProducts] = useState([]);
+    const [searched, setSearched] = useState('');
 
     return (
-        <InfoContext.Provider value={{user, setUser,  selected, setSelected, birdProducts, setBirdProducts, catProducts, setCatProducts, dogProducts, setDogProducts, fishProducts, setFishProducts, token, setToken}}
+        <InfoContext.Provider value={{user, setUser,  selected, setSelected, birdProducts, setBirdProducts, catProducts, setCatProducts, dogProducts, setDogProducts, fishProducts, setFishProducts, token, setToken, products, setProducts, searched, setSearched}}
         >
             {children}
         </InfoContext.Provider>

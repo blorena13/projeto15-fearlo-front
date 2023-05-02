@@ -1,16 +1,20 @@
 import styled from "styled-components";
 import { IonIcon } from "@ionic/react";
-import {cartOutline} from "ionicons/icons";
+import { useContext} from "react";
 import Header from "../components/Header";
 import Nav from "../components/Menu";
-import {useContext, useEffect} from "react";
-import { InfoContext } from "../context/InfoContext";
-import { useNavigate } from "react-router-dom";
+import {cartOutline} from "ionicons/icons";
 //import { test_array } from "../components/test_array";
+import { InfoContext } from "../context/InfoContext";
 
-export default function Dog(){
-    const {dogProducts, setDogProducts, selected, setSelected} = useContext(InfoContext);
-    const navigate = useNavigate();
+export default function Search(){
+    const {selected, setSelected, products, searched} = useContext(InfoContext);
+
+    const filter = products.filter((product) =>
+        product.description.toLowerCase().includes(searched)
+    )
+
+
     function checkArray(obj, arr) {
         const index = arr.findIndex(item => JSON.stringify(item) === JSON.stringify(obj));
         if (index !== -1) {
@@ -21,26 +25,13 @@ export default function Dog(){
         return arr;
       }
       
-    function changeCart(price, image, description){
+    function changeCart(obj){
         let add = selected;
-        const obj = {
-            price: price,
-            image: image,
-            description: description,
-            quantity: 1
-        }
         console.log(obj);
         let final = checkArray(obj, add);
         setSelected(final);
-        setDogProducts(dogProducts);
         console.log(selected);
     }
-
-    useEffect(() =>{
-        if(dogProducts.length === 0){
-            navigate("/");
-        }
-    })
 
     return(
         <Container>
@@ -48,39 +39,42 @@ export default function Dog(){
             <Aux />
             <Nav />
             <Products>
-            {dogProducts.map((index) => {
-                let text = '';
-                let color = '';
-                const obj = {
-                    price: index.price,
-                    image: index.image,
-                    description: index.description,
-                    quantity: 1
-                }
-                const contains = selected.findIndex(item => JSON.stringify(item) === JSON.stringify(obj));
-                if(contains !== -1){
-                    text = 'Remova do Carrinho';
-                    color = '#E31C79'
-                } else{
-                    text = 'Adicione ao Carrinho';
-                    color = '#F3D011';
-                }
-                return(
-                    <ProductsCard>
-                        <ProductImg src={index.image} />
-                        <ProductDescription>{index.description}</ProductDescription>
-                        <p>Preço Unitário: R$ {index.price}</p>
-                        <Quantity color={color} onClick={() => changeCart(index.price, index.image, index.description)}>
-                            <p>{text}</p>
-                            <Change icon={cartOutline} />
-                        </Quantity>
-                    </ProductsCard>
-                )
-            })}
+                {filter.map((index, i) => {
+                    let text = '';
+                    let color = '';
+                    const obj = {
+                        price: index.price,
+                        image: index.image,
+                        description: index.description,
+                        quantity: 1
+                    }
+                    const contains = selected.findIndex(item => JSON.stringify(item) === JSON.stringify(obj));
+                    if(contains !== -1){
+                        text = 'Remova do Carrinho';
+                        color = '#E31C79'
+                    } else{
+                        text = 'Adicione ao Carrinho';
+                        color = '#F3D011';
+                    }
+
+                    return(
+                        <ProductsCard key={i}>
+                            <ProductImg src={index.image} />
+                            <ProductDescription>{index.description}</ProductDescription>
+                            <p>Preço Unitário: R$ {index.price}</p>
+                            <Quantity color={color  } onClick={() => changeCart(obj)}>
+                                <p>{text}</p>
+                                <Change icon={cartOutline} />
+                            </Quantity>
+                        </ProductsCard>
+                    )
+                })}
             </Products>
         </Container>
     )
 }
+
+
 
 const Container = styled.div`
     width: 100%;

@@ -5,10 +5,19 @@ import Nav from "../components/Menu";
 import {cartOutline} from "ionicons/icons";
 import {useContext} from "react";
 import { InfoContext } from "../context/InfoContext";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 //import { test_array } from "../components/test_array";
 
 export default function Fish(){
     const {fishProducts, selected, setSelected} = useContext(InfoContext);
+    const navigate = useNavigate();
+
+    useEffect(() =>{
+        if(fishProducts.length === 0){
+            navigate("/");
+        }
+    })
 
     function checkArray(obj, arr) {
         const index = arr.findIndex(item => JSON.stringify(item) === JSON.stringify(obj));
@@ -41,13 +50,30 @@ export default function Fish(){
             <Nav />
             <Products>
             {fishProducts.map((index) => {
+                let text = '';
+                let color = '';
+                const obj = {
+                    price: index.price,
+                    image: index.image,
+                    description: index.description,
+                    quantity: 1
+                }
+                const contains = selected.findIndex(item => JSON.stringify(item) === JSON.stringify(obj));
+                if(contains !== -1){
+                    text = 'Remova do Carrinho';
+                    color = '#E31C79'
+                } else{
+                    text = 'Adicione ao Carrinho';
+                    color = '#F3D011';
+                }
+
                 return(
                     <ProductsCard>
                         <ProductImg src={index.image} />
                         <ProductDescription>{index.description}</ProductDescription>
                         <p>Preço Unitário: R$ {index.price}</p>
-                        <Quantity onClick={() => changeCart(index.price, index.image, index.description)}>
-                            <p>Adicione ao Carrinho</p>
+                        <Quantity color={color} onClick={() => changeCart(index.price, index.image, index.description)}>
+                            <p>{text}</p>
                             <Change icon={cartOutline} />
                         </Quantity>
                     </ProductsCard>
@@ -111,7 +137,7 @@ const Quantity = styled.div`
     display: flex;
     width: 100%;
     align-items: center;
-    background-color: #E31C79;
+    background-color: ${props => props.color};
     justify-content: space-evenly;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;

@@ -5,20 +5,27 @@ import { IonIcon } from "@ionic/react";
 import {searchOutline} from "ionicons/icons";
 import {cartOutline} from "ionicons/icons";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { InfoContext } from "../context/InfoContext";
 
 export default function Header(){
+    const {searched, setSearched} = useContext(InfoContext);
     const navigate = useNavigate();
 
     function toHome(){
         navigate("/")
     }
 
+    function toSearch(){
+        navigate("/search")
+    }
+
     return(
         <Head>
             <Logo onClick={toHome} src={Fearlo} />
             <Search>
-                <SearchBar />
-                <Button>
+                <SearchBar type="text" value={searched} onChange={(e) => setSearched(e.target.value)} />
+                <Button onClick={toSearch}>
                     <Icon icon={searchOutline} />
                 </Button>
             </Search>
