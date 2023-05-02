@@ -4,9 +4,13 @@ import ShoppingCart from "./ShoppingCart"
 import Pay from "./Pay"
 import { useState } from "react";
 import Produto from "../../assets/produto.png"
+import Modal from "./Modal";
 
 
 export default function Payment() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [cep, setCep] = useState()
+  const [cupom, setCupom] = useState()
   const [sacola, setSacola] = useState([
     {
       image: Produto, 
@@ -22,15 +26,24 @@ export default function Payment() {
 
   return (
     <Container>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} sacola={sacola} total={total} />
       <Top/>
       <ShoppingCart sacola={sacola} setSacola={setSacola} />
-      <Pay total={total}/>
+      <Pay 
+        total={total} 
+        setIsOpen={setIsOpen} 
+        cep={cep} 
+        setCep={setCep} 
+        // cupom={cupom}
+        // setCupom={setCupom}
+      />
     </Container>
   )
 }
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  position: absolute;
   padding: 0 30px;
   padding-top: 170px;
   min-width: 500px;

@@ -15,21 +15,20 @@ export default function ShoppingCart({sacola, setSacola}) {
       price: parseFloat(price.replace("R$ ", "")).toFixed(2),
       quant: 1
     }
-
     const newList = [...sacola, objetoAdicionado]
     setSacola(newList)
   }
 
-  function removeProduct(e) {
-    const remover = e.target.parentNode
-
+  function removeItem(i) {
+    const newSacola = sacola.filter((item, index) => index !== i)
+    setSacola(newSacola)
   }
-
-   function handleQuant(i, value) {
+  
+  function handleQuant(i, value) {
     const newList = [...sacola]
     newList[i].quant += value
     setSacola(newList)
-   }
+  }
 
   return (
     <Container>
@@ -51,7 +50,7 @@ export default function ShoppingCart({sacola, setSacola}) {
               <button onClick={() => handleQuant(index, +1)}>+</button>
             </div>
           </Price>
-          <ion-icon name="trash-outline"></ion-icon>
+          <ion-icon onClick={() => removeItem(index)} name="trash-outline"></ion-icon>
         </ProductAdded>
       )}     
       <Suggestions>
@@ -84,7 +83,6 @@ export default function ShoppingCart({sacola, setSacola}) {
 }
 const Container = styled.div`
   width: 70%;
-  /* height: 100%; */
   @media (max-width: 800px) {
     width: 100%;    
   }
@@ -98,7 +96,6 @@ const Container = styled.div`
 `
 const Banner = styled.div`
   width: 100%;
-  /* background-color: #c9c0c6a7; */
   background-color: white;
   border-radius: 10px;
   padding: 5px;  
@@ -112,7 +109,7 @@ const ProductAdded = styled.div`
     align-items: center; 
     padding: 20px;
     margin: 20px 0;
-    border: 1px solid #454545;
+    border: 1px solid #cfcfcf;
     border-radius: 10px;
     background: white;
     ion-icon {
@@ -151,9 +148,11 @@ const Price = styled.div`
     align-items: center;
     padding: 5px;
     border-radius: 10px;
-    border: 1px solid #454545;
+    border: 1px solid #cfcfcf;
     button {
       width: 30px;
+      font-size: 15px;
+      font-weight: bolder;
       border: none;
       background-color: white;
     }
@@ -167,7 +166,7 @@ const Suggestions = styled.div`
   padding: 20px;
   /* padding-bottom: 50px; */
   margin: 30px 0;
-  border: 1px solid #454545;
+  border: 1px solid #cfcfcf;
   border-radius: 10px;
   background: white;
 `
